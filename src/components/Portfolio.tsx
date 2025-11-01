@@ -1,9 +1,17 @@
+import { useState } from "react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import portfolio1 from "@/assets/portfolio-1.jpg";
 import portfolio2 from "@/assets/portfolio-2.jpg";
 import portfolio3 from "@/assets/portfolio-3.jpg";
 import portfolio4 from "@/assets/portfolio-4.jpg";
 import portfolio5 from "@/assets/portfolio-5.jpg";
 import portfolio6 from "@/assets/portfolio-6.jpg";
+import {
+  Dialog,
+  DialogContent,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 const portfolioItems = [
   { id: 1, image: portfolio1, alt: "Professional corporate portrait" },
@@ -15,6 +23,20 @@ const portfolioItems = [
 ];
 
 const Portfolio = () => {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const handlePrevious = () => {
+    if (selectedIndex !== null) {
+      setSelectedIndex((selectedIndex - 1 + portfolioItems.length) % portfolioItems.length);
+    }
+  };
+
+  const handleNext = () => {
+    if (selectedIndex !== null) {
+      setSelectedIndex((selectedIndex + 1) % portfolioItems.length);
+    }
+  };
+
   return (
     <section id="portfolio" className="py-24">
       <div className="container mx-auto px-4">
@@ -31,8 +53,9 @@ const Portfolio = () => {
           {portfolioItems.map((item, index) => (
             <div
               key={item.id}
-              className="group relative aspect-[4/5] overflow-hidden rounded-lg animate-scale-in"
+              className="group relative aspect-[4/5] overflow-hidden rounded-lg animate-scale-in cursor-pointer"
               style={{ animationDelay: `${index * 0.1}s` }}
+              onClick={() => setSelectedIndex(index)}
             >
               <img
                 src={item.image}
@@ -45,6 +68,49 @@ const Portfolio = () => {
           ))}
         </div>
       </div>
+
+      <Dialog open={selectedIndex !== null} onOpenChange={(open) => !open && setSelectedIndex(null)}>
+        <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95 border-none">
+          <DialogClose className="absolute right-4 top-4 z-50 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+            <X className="h-6 w-6 text-white" />
+            <span className="sr-only">Close</span>
+          </DialogClose>
+          
+          {selectedIndex !== null && (
+            <div className="relative flex items-center justify-center w-full h-full min-h-[80vh]">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute left-4 z-50 h-12 w-12 rounded-full bg-black/50 text-white hover:bg-black/70"
+                onClick={handlePrevious}
+              >
+                <ChevronLeft className="h-8 w-8" />
+                <span className="sr-only">Previous image</span>
+              </Button>
+
+              <img
+                src={portfolioItems[selectedIndex].image}
+                alt={portfolioItems[selectedIndex].alt}
+                className="max-w-full max-h-[85vh] object-contain"
+              />
+
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute right-4 z-50 h-12 w-12 rounded-full bg-black/50 text-white hover:bg-black/70"
+                onClick={handleNext}
+              >
+                <ChevronRight className="h-8 w-8" />
+                <span className="sr-only">Next image</span>
+              </Button>
+
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm">
+                {selectedIndex + 1} / {portfolioItems.length}
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
