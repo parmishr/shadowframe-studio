@@ -40,30 +40,32 @@ const Portfolio = () => {
   return (
     <section id="portfolio" className="py-24">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4">
+        <div className="text-center mb-20 animate-fade-in">
+          <h2 className="font-serif text-5xl md:text-6xl font-light mb-6 tracking-wide">
             Portfolio
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mb-6"></div>
+          <p className="text-base text-foreground/70 max-w-2xl mx-auto font-light tracking-wide leading-relaxed">
             A selection of recent work showcasing diverse styles and subjects
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {portfolioItems.map((item, index) => (
             <div
               key={item.id}
-              className="group relative aspect-[4/5] overflow-hidden rounded-lg animate-scale-in cursor-pointer"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="group relative aspect-[4/5] overflow-hidden rounded-xl animate-scale-in cursor-pointer shadow-elegant hover:shadow-hover transition-all duration-500"
+              style={{ animationDelay: `${index * 0.15}s` }}
               onClick={() => setSelectedIndex(index)}
             >
               <img
                 src={item.image}
                 alt={item.alt}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 brightness-90 group-hover:brightness-100"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 ring-1 ring-inset ring-foreground/5 rounded-xl"></div>
             </div>
           ))}
         </div>

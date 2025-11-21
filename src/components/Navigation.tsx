@@ -14,43 +14,43 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <h2 className="font-serif text-2xl font-bold">Portrait Studio</h2>
+        <div className="flex items-center justify-between h-24">
+          <h2 className="font-serif text-2xl font-light tracking-wider">PORTRAIT STUDIO</h2>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-10">
             <button
               onClick={() => scrollToSection("home")}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-foreground/60 hover:text-foreground transition-colors duration-300 font-light tracking-wide text-sm"
             >
-              Home
+              HOME
             </button>
             <button
               onClick={() => scrollToSection("about")}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-foreground/60 hover:text-foreground transition-colors duration-300 font-light tracking-wide text-sm"
             >
-              About
+              ABOUT
             </button>
             <button
               onClick={() => scrollToSection("portfolio")}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-foreground/60 hover:text-foreground transition-colors duration-300 font-light tracking-wide text-sm"
             >
-              Portfolio
+              PORTFOLIO
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-foreground/60 hover:text-foreground transition-colors duration-300 font-light tracking-wide text-sm"
             >
-              Services
+              SERVICES
             </button>
             <Button
               onClick={() => scrollToSection("contact")}
-              variant="secondary"
+              className="bg-accent text-accent-foreground hover:bg-accent/90 hover:shadow-glow transition-all duration-300 tracking-wide"
               size="sm"
             >
-              Contact
+              CONTACT
             </Button>
           </div>
 
@@ -66,37 +66,36 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 space-y-4 animate-fade-in">
+          <div className="md:hidden py-6 space-y-4 animate-fade-in">
             <button
               onClick={() => scrollToSection("home")}
-              className="block w-full text-left py-2 text-muted-foreground hover:text-foreground transition-colors"
+              className="block w-full text-left py-3 text-foreground/60 hover:text-foreground transition-colors font-light tracking-wide"
             >
-              Home
+              HOME
             </button>
             <button
               onClick={() => scrollToSection("about")}
-              className="block w-full text-left py-2 text-muted-foreground hover:text-foreground transition-colors"
+              className="block w-full text-left py-3 text-foreground/60 hover:text-foreground transition-colors font-light tracking-wide"
             >
-              About
+              ABOUT
             </button>
             <button
               onClick={() => scrollToSection("portfolio")}
-              className="block w-full text-left py-2 text-muted-foreground hover:text-foreground transition-colors"
+              className="block w-full text-left py-3 text-foreground/60 hover:text-foreground transition-colors font-light tracking-wide"
             >
-              Portfolio
+              PORTFOLIO
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="block w-full text-left py-2 text-muted-foreground hover:text-foreground transition-colors"
+              className="block w-full text-left py-3 text-foreground/60 hover:text-foreground transition-colors font-light tracking-wide"
             >
-              Services
+              SERVICES
             </button>
             <Button
               onClick={() => scrollToSection("contact")}
-              variant="secondary"
-              className="w-full"
+              className="w-full bg-accent text-accent-foreground hover:bg-accent/90 tracking-wide"
             >
-              Contact
+              CONTACT
             </Button>
           </div>
         )}
